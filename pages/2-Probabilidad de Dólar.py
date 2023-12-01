@@ -8133,12 +8133,14 @@ if option == 'Dólar Blue':
     # Grafica la distribución de los rendimientos diarios
     fig = px.histogram(df1, x='Daily_Return_blue', nbins=50, color='Direction_blue',
                         labels={'Daily_Return_blue': 'Rendimiento Diario (%)'},
+                        text_auto = True,
                         title=f'Distribución de Rendimientos Diarios del {option}'                    
                     )       
     # Muestra la gráfica histograma de rendimimentos por fecha 
     st.plotly_chart(fig, use_container_width=True)    
     fig1 = px.histogram(df1, x='Daily_Return_blue', nbins=50,
                         histnorm = 'probability density',
+                        text_auto = True,
                         labels={'Daily_Return_blue': 'Rendimiento Diario (%)'},
                         title=f'Densidad de Probabilidad Rendimientos Diarios del {option}' 
                     )
@@ -8181,12 +8183,14 @@ elif option == 'Dólar CCL':
     # Grafica la distribución de los rendimientos diarios
     fig = px.histogram(df1, x='Daily_Return_ccl', nbins=50, color='Direction_ccl',
                         labels={'Daily_Return_ccl': 'Rendimiento Diario (%)'},
+                        text_auto = True,
                         title=f'Distribución de Rendimientos Diarios del {option}'                    
                     )       
     # Muestra la gráfica
     st.plotly_chart(fig, theme='streamlit', use_container_width=True)
     fig1 = px.histogram(df1, x='Daily_Return_ccl', nbins=50,
                         histnorm = 'probability density',
+                        text_auto = True,
                         labels={'Daily_Return_ccl': 'Rendimiento Diario (%)'},
                         title=f'Densidad de Probabilidad Rendimientos Diarios del {option}' 
                     )
@@ -8227,6 +8231,7 @@ elif option == 'Dólar MEP':
     # Grafica la distribución de los rendimientos diarios
     fig = px.histogram(df1, x='Daily_Return_mep', nbins=50, color='Direction_mep',
                         labels={'Daily_Return_mep': 'Rendimiento Diario (%)'},
+                        text_auto = True,
                         title=f'Distribución de Rendimientos Diarios del {option}'
                                             
                     )       
@@ -8248,10 +8253,7 @@ elif option == 'Dólar MEP':
 else:
     st.write('ERROR, verificar la opción seleccionada...')
     
-    
-    
-    
-    
+ 
 # ---- CONTACT ----
 with st.container():
     st.write("---")
