@@ -8140,7 +8140,7 @@ mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()), key =
 count +=1
 # Realizar la predicción
 entrada_blue = np.array([[ccl, mep]])
-prediccion_blue = modeloblue.predict(entrada_blue)
+prediccion_blue = round(modeloblue.predict(entrada_blue),2)
 
 # Mostrar la predicción
 st.subheader(f'Predicción BLUE : {prediccion_blue[0]}')
@@ -8188,7 +8188,7 @@ mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()), key=c
 count +=1
 # Realizar la predicción
 entrada_ccl = np.array([[blue, mep]])
-prediccion_ccl = modeloccl.predict(entrada_ccl)
+prediccion_ccl = round(modeloccl.predict(entrada_ccl),2)
 
 # Mostrar la predicción
 st.subheader(f'Predicción CCL : {prediccion_ccl[0]}')
@@ -8237,7 +8237,7 @@ count +=1
 
 # Realizar la predicción
 entrada_mep = np.array([[blue, mep]])
-prediccion_mep = modelomep.predict(entrada_mep)
+prediccion_mep = round(modelomep.predict(entrada_mep),2)
 
 # Mostrar la predicción
 st.subheader(f'Predicción MEP : {prediccion_mep[0]}')
