@@ -9,7 +9,7 @@ import warnings
 warnings.simplefilter("ignore", category=FutureWarning)
 #-------------- logo de la pagina -----------------
 #Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Financial Analysis", page_icon=":📊:", layout="wide")
+st.set_page_config(page_title="Analisis Dólar", page_icon=":📊:", layout="wide")
 
 # Use local CSS
 def local_css(file_name):
