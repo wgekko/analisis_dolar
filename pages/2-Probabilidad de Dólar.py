@@ -8084,7 +8084,6 @@ df = [
  } 
 ]
 
-
 dato = pd.DataFrame(df)
 
 #Calculo del dolar CCL como el promedio del CCL de del AL30C y el GD30C
@@ -8251,8 +8250,22 @@ elif option == 'Dólar MEP':
     with tab2:
                 st.plotly_chart(fig1, theme=None, use_container_width=True)
 else:
-    st.write('ERROR, verificar la opción seleccionada...')
-    
+    st.write(':orange[ERROR, verificar la opción seleccionada...]')
+   
+x = pd.Series(dato['BLUE'])
+y = pd.Series(dato['CCL'])   
+z = pd.Series(dato['MEP'])   
+color ='orange'
+xyz= pd.DataFrame({'Blue': x, 'CCL': y, 'MEP': z })
+matrix_corr_per = xyz.corr(method="pearson")
+matrix_corr_spear = xyz.corr(method="spearman")
+matrix_corr_ken = xyz.corr(method="kendall")
+st.markdown(':orange[Correlación modelo Pearson]')
+st.table( matrix_corr_per) 
+st.markdown(':orange[Correlación modelo Spearman]') 
+st.table(matrix_corr_spear)  
+st.markdown(':orange[Correlación modelo Kendall]')
+st.table(matrix_corr_ken)
  
 # ---- CONTACT ----
 with st.container():
