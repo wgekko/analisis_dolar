@@ -7,7 +7,7 @@ warnings.simplefilter("ignore", category=FutureWarning)
 
 #-------------- logo de la pagina -----------------
 #Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Financial Analysis", page_icon=":📊:", layout="wide")
+st.set_page_config(page_title="Analisis de Acciones", page_icon=":📊:", layout="wide")
 
 # Use local CSS
 def local_css(file_name):
@@ -32,7 +32,7 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_background("images/main.jpg")
+set_background("images/fondo_muro.jpg")
 
 st.sidebar.image("images/grafico6.gif", caption="Walter Gomez Financial Consultant")
 

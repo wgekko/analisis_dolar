@@ -2,7 +2,7 @@
 name = "Analisis Dolar"
 version = "0.1.0"
 description = ""
-authors = [""]
+authors = ["Walter Gomez"]
 
 [tool.poetry.dependencies]
 python = "3.10.4"
@@ -23,4 +23,4 @@ build-backend = "poetry.core.masonry.api"
 primaryColor = "#FCF3CF"
 backgroundColor = "#FCF3CF"
 secondaryBackgroundColor = "#F8C471"
-textColor = "#1C2833"
+textColor = "d5d7da"

@@ -24,19 +24,21 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_background("images/main.jpg")
+
+set_background("images/fondo_muro.jpg")
+
 
 st.sidebar.image("images/grafico5.gif", caption="Walter Gomez Financial Consultant")
 
 st.markdown(
-    """
-<style>
-sidebar  {
-    background-image: ('images/sider.jpg'));
-}
-</style>
-""",
-    unsafe_allow_html=True,
+    '''
+    <style>
+    sidebar {
+        background-image: linear-gradiant('images/imge-slide.jpg'));
+    }
+    </style>
+    ''',
+        unsafe_allow_html=True,
 )
 
 # despliegue de imagen lottier
@@ -68,13 +70,13 @@ with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column:
-        st.title("Análisis de Dólar Blue-MEP-CCL ")
+        st.title("Análisis de Dólar Blue-MEP-CCL")
         st.subheader("De desarrolla los siguientes temas :")
         #st.write("#")
         st.subheader(
             "Evolución de la brecha cambiaria, probabilidad de suba o baja, proyecciones."
         )
-        st.write("Fuente: BCRA, BYMA, ambito financiero." )
+        st.write("Fuente: BCRA, BYMA, ambito financiero.")
     with right_column:
         #st.write("#")
         #st.write("#")
@@ -91,11 +93,11 @@ with st.container():
         #st.subheader("Contenido de la página")
         #st.write("##")
         #st.write("##")
-        st.subheader("En la barra lateral accedemos :" )
+        st.subheader("En la barra lateral accedemos")
         st.subheader("- Análisis de Brechas de Dolar")
-        st.subheader("- Análisis de Probabilidades del Dolar ")
-        st.subheader("- Análsis de CCL ")
-        st.subheader("- Predicción de tipo de cambio ")
+        st.subheader("- Análisis de Probabilidades del Dolar")
+        st.subheader("- Análsis de CCL")
+        st.subheader("- Predicción de tipo de cambio")
         st.subheader("- Análisis de Acciones(en U$D)")
     with right_column:
         st.write("#")

@@ -9,7 +9,7 @@ import warnings
 warnings.simplefilter("ignore", category=FutureWarning)
 #-------------- logo de la pagina -----------------
 #Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Analisis Dólar", page_icon=":📊:", layout="wide")
+st.set_page_config(page_title="Probab Dólar", page_icon=":📊:", layout="wide")
 
 
 # Use local CSS
@@ -35,7 +35,7 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_background("images/main.jpg")
+set_background("images/fondo_muro.jpg")
 
 st.sidebar.image("images/grafico4.gif", caption="Walter Gomez Financial Consultant")
 
@@ -8084,6 +8084,7 @@ df = [
  } 
 ]
 
+
 dato = pd.DataFrame(df)
 
 #Calculo del dolar CCL como el promedio del CCL de del AL30C y el GD30C
@@ -8250,8 +8251,9 @@ elif option == 'Dólar MEP':
     with tab2:
                 st.plotly_chart(fig1, theme=None, use_container_width=True)
 else:
-    st.write(':orange[ERROR, verificar la opción seleccionada...]')
-   
+    st.write('ERROR, verificar la opción seleccionada...')
+ 
+# ----------------- calculo de correlacion ------------------- 
 x = pd.Series(dato['BLUE'])
 y = pd.Series(dato['CCL'])   
 z = pd.Series(dato['MEP'])   
@@ -8260,12 +8262,13 @@ xyz= pd.DataFrame({'Blue': x, 'CCL': y, 'MEP': z })
 matrix_corr_per = xyz.corr(method="pearson")
 matrix_corr_spear = xyz.corr(method="spearman")
 matrix_corr_ken = xyz.corr(method="kendall")
-st.markdown(':orange[Correlación modelo Pearson]')
+st.markdown('Correlación modelo Pearson')
 st.table( matrix_corr_per) 
-st.markdown(':orange[Correlación modelo Spearman]') 
+st.markdown('Correlación modelo Spearman') 
 st.table(matrix_corr_spear)  
-st.markdown(':orange[Correlación modelo Kendall]')
+st.markdown('Correlación modelo Kendall')
 st.table(matrix_corr_ken)
+    
  
 # ---- CONTACT ----
 with st.container():
