@@ -39,7 +39,7 @@ set_background("images/fondo_muro.jpg")
 
 st.sidebar.image("images/grafico4.gif", caption="Walter Gomez Financial Consultant")
 
-df = [
+tickers = [
  {
   "FECHA": "01/12/2020",
   "PESO": 86.95,
@@ -8047,7 +8047,7 @@ df = [
   "GL30": 31615,
   "GL30D": 36.5,
   "GL30C": 37
- } 
+ }
  ,
  {
   "FECHA": "29/11/2023",
@@ -8081,11 +8081,47 @@ df = [
   "GL30": 35299,
   "GL30D": 38.89,
   "GL30C": 38.50
- } 
+ } ,
+ {
+  "FECHA": "04/12/2023",
+  "PESO": 380.37,
+  "BLUE": 930,
+  "AL30": 32120,
+  "AL30D": 34.83,
+  "AL30C": 35.06,
+  "GL30": 35335,
+  "GL30D": 38.56,
+  "GL30C": 40
+ }
+ ,
+ {
+  "FECHA": "05/12/2023",
+  "PESO": 381,
+  "BLUE": 910,
+  "AL30": 33515,
+  "AL30D": 35.40,
+  "AL30C": 35.70,
+  "GL30": 36949,
+  "GL30D": 39.53,
+  "GL30C": 41.85
+ }
+ ,
+ {
+  "FECHA": "06/12/2023",
+  "PESO": 381.31,
+  "BLUE": 955,
+  "AL30": 34999,
+  "AL30D": 37.00,
+  "AL30C": 37.00,
+  "GL30": 37852,
+  "GL30D": 40.40,
+  "GL30C": 42.40
+ }
 ]
 
 
-dato = pd.DataFrame(df)
+
+dato = pd.DataFrame(tickers)
 
 #Calculo del dolar CCL como el promedio del CCL de del AL30C y el GD30C
 dato['CCL'] = round(dato['AL30'] /dato['AL30C'],2)
