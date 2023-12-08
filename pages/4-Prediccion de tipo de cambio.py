@@ -1,16 +1,18 @@
-import pandas as pd
 import streamlit as st
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import GradientBoostingClassifier
-import plotly.graph_objects as go
-import plotly.express as px
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
 import base64
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+
 import warnings
 warnings.simplefilter("ignore", category=FutureWarning)
+
 #-------------- logo de la pagina -----------------
 #Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Probab Dólar", page_icon=":📊:", layout="wide")
-
+st.set_page_config(page_title="Prediccion tipo de Cambio", page_icon=":📊:", layout="wide")
 
 # Use local CSS
 def local_css(file_name):
@@ -37,8 +39,10 @@ def set_background(png_file):
 
 set_background("images/fondo_muro.jpg")
 
-st.sidebar.image("images/grafico4.gif", caption="Walter Gomez Financial Consultant")
 
+st.sidebar.image("images/grafico7.gif", caption="Walter Gomez Financial Consultant")
+
+# Datos de ejemplo
 tickers = [
  {
   "FECHA": "01/12/2020",
@@ -8132,6 +8136,7 @@ tickers = [
 ]
 
 
+# Crear un DataFrame
 dato = pd.DataFrame(tickers)
 
 #Calculo del dolar CCL como el promedio del CCL de del AL30C y el GD30C
@@ -8143,180 +8148,153 @@ dato['CCL'] /= 2
 dato['MEP'] = round(dato['GL30']  /dato['GL30D'],2)
 dato['MEP'] += round(dato['AL30'] /dato['AL30D'],2)
 dato['MEP'] /= 2
-df1= pd.DataFrame()
 
-# ----------- despliegue de la barra de opciones --------------
-list_option = ['Dólar Blue', 'Dólar CCL', 'Dólar MEP']
-option = st.radio("Seleccione una opción : ", (list_option), horizontal=True )
-st.subheader(f"Probabilidad de rendimientos diarios de : {option} ")
-st.write("---")
-# Calcula las variaciones diarias
-if option == 'Dólar Blue':    
-    df1['Daily_Return_blue'] = dato['BLUE'].pct_change() * 100
-    # Etiqueta las observaciones como 'Up' si la tasa de cambio subió y 'Down' si bajó
-    df1['Direction_blue'] = df1['Daily_Return_blue'].apply(lambda x: 1 if x > 0 else 0)
+count=0
+# --------------- Separar datos de entrada y salida para el Blue ---------------- 
+X = dato[["CCL","MEP"]].values  # Entradas
+y = dato["BLUE"].values  # Salida que deseas predecir
 
-    # Elimina las filas con NaN resultantes de las variaciones diarias
-    df1 = df1.dropna()
+# Dividir datos en conjunto de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # División de datos en entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(df1[['Daily_Return_blue']], df1['Direction_blue'], test_size=0.2, random_state=42)
-   
-    # Entrenamiento del modelo de Gradient Boosting
-    model = GradientBoostingClassifier()
-    model.fit(X_train, y_train)
+# Crear el modelo
+modeloblue = RandomForestRegressor(n_estimators=100, random_state=42)
 
-    # Predicciones en el conjunto de prueba
-    predictions = model.predict(X_test)
+# Entrenar el modelo
+modeloblue.fit(X_train, y_train)
 
-    # Calcula la probabilidad de subida o bajada en el conjunto de prueba
-    prob_up = round(sum(predictions) / len(predictions),2)
-    prob_down = 1 - prob_up
-    
-    # Muestra la probabilidad
-    st.subheader(f'Probabilidad de suba de {option}: {prob_up:.2%}')
-    st.subheader(f'Probabilidad de baja de {option}: {prob_down:.2%}')
+# Predicciones en el conjunto de prueba
+y_pred = modeloblue.predict(X_test)
 
-    # Grafica la distribución de los rendimientos diarios
-    fig = px.histogram(df1, x='Daily_Return_blue', nbins=50, color='Direction_blue',
-                        labels={'Daily_Return_blue': 'Rendimiento Diario (%)'},
-                        text_auto = True,
-                        title=f'Distribución de Rendimientos Diarios del {option}'                    
-                    )       
-    # Muestra la gráfica histograma de rendimimentos por fecha 
-    st.plotly_chart(fig, use_container_width=True)    
-    fig1 = px.histogram(df1, x='Daily_Return_blue', nbins=50,
-                        histnorm = 'probability density',
-                        text_auto = True,
-                        labels={'Daily_Return_blue': 'Rendimiento Diario (%)'},
-                        title=f'Densidad de Probabilidad Rendimientos Diarios del {option}' 
-                    )
-                    
-    tab1, tab2 = st.tabs(["fondo transparente", "fondo color intenso"])
-    with tab1:
-                #st.write('se grafica el log a la regresion')
-                st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
-    with tab2:
-                st.plotly_chart(fig1, theme=None, use_container_width=True)
-    
-    
-elif option == 'Dólar CCL':
-    df1['Daily_Return_ccl'] = dato['CCL'].pct_change() * 100
+# Calcular error
+error = mean_squared_error(y_test, y_pred)
 
-    # Etiqueta las observaciones como 'Up' si la tasa de cambio subió y 'Down' si bajó
-    df1['Direction_ccl'] = df1['Daily_Return_ccl'].apply(lambda x: 1 if x > 0 else 0)
+# Visualizar las predicciones vs. valores reales
+fig, ax = plt.subplots()
+ax.scatter(X_test[:, 0], y_test, color='red', label='Valor real')
+ax.scatter(X_test[:, 0], y_pred, color='blue', label='Predicción')
+ax.set_xlabel(['CCL','MEP'])
+ax.set_ylabel('BLUE')
+ax.legend()
+# Mostrar la figura en Streamlit
+st.pyplot(fig)
 
-    # Elimina las filas con NaN resultantes de las variaciones diarias
-    df1 = df1.dropna()
+# Aplicación Streamlit
+st.subheader('Predicción para tipo de  cambio BLUE')
+#blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()))  # =1Slider para ingresar el valor de BLUE
+ccl = st.slider('CCL', int(dato['CCL'].min()), int(dato['CCL'].max()), key = count)  # Slider para ingresar el valor de CCL
+count +=1
+mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()), key = count)  # Slider para ingresar el valor de MEP
+count +=1
+# Realizar la predicción
+entrada_blue = np.array([[ccl, mep]])
+prediccion_blue = modeloblue.predict(entrada_blue)
 
-    # División de datos en entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(df1[['Daily_Return_ccl']], df1['Direction_ccl'], test_size=0.2, random_state=42)
+# Mostrar la predicción
+st.subheader(f'Predicción BLUE : {round(prediccion_blue[0],2)}')
 
-    # Entrenamiento del modelo de Gradient Boosting
-    model = GradientBoostingClassifier()
-    model.fit(X_train, y_train)
+# Mostrar el error
+st.write(f'Error cuadrático medio en el conjunto de prueba: {round(error,6)}')
+st.write('')
+st.write('---')
 
-    # Predicciones en el conjunto de prueba
-    predictions = model.predict(X_test)
+#------------------ Separar datos de entrada y salida para el CCL------------------ 
+X1 = dato[["BLUE","MEP"]].values  # Entradas
+y1 = dato["CCL"].values  # Salida que deseas predecir
 
-    # Calcula la probabilidad de subida o bajada en el conjunto de prueba
-    prob_up = round(sum(predictions) / len(predictions),2)
-    prob_down = 1 - prob_up
+# Dividir datos en conjunto de entrenamiento y prueba
+X1_train, X1_test, y1_train, y1_test = train_test_split(X1, y1, test_size=0.2, random_state=42)
 
-    # Muestra la probabilidad
-    st.subheader(f'Probabilidad de suba de {option}: {prob_up:.2%}')
-    st.subheader(f'Probabilidad de baja de {option}: {prob_down:.2%}')
+# Crear el modelo
+modeloccl = RandomForestRegressor(n_estimators=100, random_state=42)
 
-    # Grafica la distribución de los rendimientos diarios
-    fig = px.histogram(df1, x='Daily_Return_ccl', nbins=50, color='Direction_ccl',
-                        labels={'Daily_Return_ccl': 'Rendimiento Diario (%)'},
-                        text_auto = True,
-                        title=f'Distribución de Rendimientos Diarios del {option}'                    
-                    )       
-    # Muestra la gráfica
-    st.plotly_chart(fig, theme='streamlit', use_container_width=True)
-    fig1 = px.histogram(df1, x='Daily_Return_ccl', nbins=50,
-                        histnorm = 'probability density',
-                        text_auto = True,
-                        labels={'Daily_Return_ccl': 'Rendimiento Diario (%)'},
-                        title=f'Densidad de Probabilidad Rendimientos Diarios del {option}' 
-                    )
-                    
-    tab1, tab2 = st.tabs(["fondo transparente", "fondo color intenso"])
-    with tab1:
-                #st.write('se grafica el log a la regresion')
-                st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
-    with tab2:
-                st.plotly_chart(fig1, theme=None, use_container_width=True)
-elif option == 'Dólar MEP':
-    df1['Daily_Return_mep'] = dato['MEP'].pct_change() * 100
+# Entrenar el modelo
+modeloccl.fit(X1_train, y1_train)
 
-    # Etiqueta las observaciones como 'Up' si la tasa de cambio subió y 'Down' si bajó
-    df1['Direction_mep'] = df1['Daily_Return_mep'].apply(lambda x: 1 if x > 0 else 0)
+# Predicciones en el conjunto de prueba
+y1_pred = modeloccl.predict(X1_test)
 
-    # Elimina las filas con NaN resultantes de las variaciones diarias
-    df1 = df1.dropna()
+# Calcular error
+error = mean_squared_error(y1_test, y1_pred)
 
-    # División de datos en entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(df1[['Daily_Return_mep']], df1['Direction_mep'], test_size=0.2, random_state=42)
+# Visualizar las predicciones vs. valores reales
+fig1, ax = plt.subplots()
+ax.scatter(X1_test[:, 0], y1_test, color='red', label='Valor real')
+ax.scatter(X1_test[:, 0], y1_pred, color='blue', label='Predicción')
+ax.set_xlabel(['BLUE','MEP'])
+ax.set_ylabel('CCL')
+ax.legend()
+# Mostrar la figura en Streamlit
+st.pyplot(fig1)
 
-    # Entrenamiento del modelo de Gradient Boosting
-    model = GradientBoostingClassifier()
-    model.fit(X_train, y_train)
+# Aplicación Streamlit
+st.subheader('Predicción para tipo de  cambio CCL')
+blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()), key= count)  # Slider para ingresar el valor de BLUE
+count +=1
+#ccl = st.slider('CCL', int(dato['CCL'].min()), int(dato['CCL'].max()))  # Slider para ingresar el valor de CCL
+mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()), key=count)  # Slider para ingresar el valor de MEP
+count +=1
+# Realizar la predicción
+entrada_ccl = np.array([[blue, mep]])
+prediccion_ccl = modeloccl.predict(entrada_ccl)
 
-    # Predicciones en el conjunto de prueba
-    predictions = model.predict(X_test)
+# Mostrar la predicción
+st.subheader(f'Predicción CCL : {round(prediccion_ccl[0],2)}')
 
-    # Calcula la probabilidad de subida o bajada en el conjunto de prueba
-    prob_up = round(sum(predictions) / len(predictions),2)
-    prob_down = 1 - prob_up
+# Mostrar el error
+st.write(f'Error cuadrático medio en el conjunto de prueba: {round(error,6)}')
+st.write('')
+st.write('---')
 
-    # Muestra la probabilidad
-    st.subheader(f'Probabilidad de suba de {option}: {prob_up:.2%}')
-    st.subheader(f'Probabilidad de baja de {option}: {prob_down:.2%}')
+#------------------ Separar datos de entrada y salida para el MEP------------------ 
+X2 = dato[["BLUE","CCL"]].values  # Entradas
+y2 = dato["MEP"].values  # Salida que deseas predecir
 
-    # Grafica la distribución de los rendimientos diarios
-    fig = px.histogram(df1, x='Daily_Return_mep', nbins=50, color='Direction_mep',
-                        labels={'Daily_Return_mep': 'Rendimiento Diario (%)'},
-                        text_auto = True,
-                        title=f'Distribución de Rendimientos Diarios del {option}'
-                                            
-                    )       
-    # Muestra la gráfica
-    st.plotly_chart(fig, theme='streamlit', use_container_width=True)
-    fig1 = px.histogram(df1, x='Daily_Return_mep', nbins=50,
-                        histnorm = 'probability density',
-                        text_auto = True,
-                        labels={'Daily_Return_mep': 'Rendimiento Diario (%)'},
-                        title=f'Densidad de Probabilidad Rendimientos Diarios del {option}' 
-                    )
-                    
-    tab1, tab2 = st.tabs(["fondo transparente", "fondo color intenso"])
-    with tab1:
-                #st.write('se grafica el log a la regresion')
-                st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
-    with tab2:
-                st.plotly_chart(fig1, theme=None, use_container_width=True)
-else:
-    st.write('ERROR, verificar la opción seleccionada...')
- 
-# ----------------- calculo de correlacion ------------------- 
-x = pd.Series(dato['BLUE'])
-y = pd.Series(dato['CCL'])   
-z = pd.Series(dato['MEP'])   
-color ='orange'
-xyz= pd.DataFrame({'Blue': x, 'CCL': y, 'MEP': z })
-matrix_corr_per = xyz.corr(method="pearson")
-matrix_corr_spear = xyz.corr(method="spearman")
-matrix_corr_ken = xyz.corr(method="kendall")
-st.markdown('Correlación modelo Pearson')
-st.table( matrix_corr_per) 
-st.markdown('Correlación modelo Spearman') 
-st.table(matrix_corr_spear)  
-st.markdown('Correlación modelo Kendall')
-st.table(matrix_corr_ken)
-    
- 
+# Dividir datos en conjunto de entrenamiento y prueba
+X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=42)
+
+# Crear el modelo
+modelomep = RandomForestRegressor(n_estimators=100, random_state=42)
+
+# Entrenar el modelo
+modelomep.fit(X2_train, y2_train)
+
+# Predicciones en el conjunto de prueba
+y2_pred = modelomep.predict(X2_test)
+
+# Calcular error
+error = mean_squared_error(y2_test, y2_pred)
+
+# Visualizar las predicciones vs. valores reales
+fig2, ax = plt.subplots()
+ax.scatter(X2_test[:, 0], y2_test, color='red', label='Valor real')
+ax.scatter(X2_test[:, 0], y2_pred, color='blue', label='Predicción')
+ax.set_xlabel(['BLUE','CCL'])
+ax.set_ylabel('MEP')
+ax.legend()
+# Mostrar la figura en Streamlit
+st.pyplot(fig2)
+
+# Aplicación Streamlit
+st.subheader('Predicción para tipo de  cambio MEP')
+blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()), key = count)  # Slider para ingresar el valor de PESO
+count +=1
+ccl = st.slider('CCL', int(dato['CCL'].min()), int(dato['CCL'].max()), key=count)  # Slider para ingresar el valor de BLUE
+count +=1
+#mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()))  # Slider para ingresar el valor de GL30D
+
+# Realizar la predicción
+entrada_mep = np.array([[blue, mep]])
+prediccion_mep = modelomep.predict(entrada_mep)
+
+# Mostrar la predicción
+st.subheader(f'Predicción MEP : {round(prediccion_mep[0]),2}')
+
+# Mostrar el error
+st.write(f'Error cuadrático medio en el conjunto de prueba: {round(error,6)}')
+st.write('')
+st.write('---')
+
 # ---- CONTACT ----
 with st.container():
     st.write("---")
