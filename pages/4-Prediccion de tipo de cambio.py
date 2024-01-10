@@ -8140,10 +8140,219 @@ tickers = [
   "AL30": 37074.50,
   "AL30D": 36.42,
   "AL30C": 36.50,
-  "GL30": 39900,
+  "GL30": 40070,
   "GL30D": 40.16,
   "GL30C": 42.50
- }
+ },
+ {
+  "FECHA": "12/12/2023",
+  "PESO": 587.57,
+  "BLUE": 1070,
+  "AL30": 38700.00,
+  "AL30D": 36.86,
+  "AL30C": 36.75,
+  "GL30": 42115.17,
+  "GL30D": 39.65,
+  "GL30C": 43.245
+ },
+ {
+  "FECHA": "13/12/2023",
+  "PESO": 832.64,
+  "BLUE": 1070,
+  "AL30": 39699.00,
+  "AL30D": 38.15,
+  "AL30C": 38.80,
+  "GL30": 42327.71,
+  "GL30D": 41.137,
+  "GL30C": 43.445
+ },
+ {
+  "FECHA": "14/12/2023",
+  "PESO": 837.91,
+  "BLUE": 990,
+  "AL30": 39700.00,
+  "AL30D": 38.80,
+  "AL30C": 39.20,
+  "GL30": 44257.35,
+  "GL30D": 42.78,
+  "GL30C": 42.985
+ },
+ {
+  "FECHA": "15/12/2023",
+  "PESO": 838.18,
+  "BLUE": 970,
+  "AL30": 38868.50,
+  "AL30D": 38.65,
+  "AL30C": 39.40,
+  "GL30": 41321.41,
+  "GL30D": 41.137,
+  "GL30C": 42.89
+ },
+ {
+  "FECHA": "18/12/2023",
+  "PESO": 840.23,
+  "BLUE": 1000,
+  "AL30": 38375.00,
+  "AL30D": 40.00,
+  "AL30C": 40.00,
+  "GL30": 39959.38,
+  "GL30D": 41.94,
+  "GL30C": 42.49
+ },
+ {
+  "FECHA": "19/12/2023",
+  "PESO": 841.46,
+  "BLUE": 985,
+  "AL30": 37570.00,
+  "AL30D": 38.40,
+  "AL30C": 39.20,
+  "GL30": 39813.31,
+  "GL30D": 41.63,
+  "GL30C": 41.00
+ },
+ {
+  "FECHA": "20/12/2023",
+  "PESO": 841.46,
+  "BLUE": 995,
+  "AL30": 36798.00,
+  "AL30D": 38.64,
+  "AL30C": 38.79,
+  "GL30": 38982.06,
+  "GL30D": 40.90,
+  "GL30C": 40.50
+ },
+ {
+  "FECHA": "21/12/2023",
+  "PESO": 842.68,
+  "BLUE": 990,
+  "AL30": 37605.00,
+  "AL30D": 38.70,
+  "AL30C": 38.90,
+  "GL30": 39784.86,
+  "GL30D": 41.67,
+  "GL30C": 41
+ },
+ {
+  "FECHA": "22/12/2023",
+  "PESO": 843.78,
+  "BLUE": 995,
+  "AL30": 36480.00,
+  "AL30D": 38.51,
+  "AL30C": 38.90,
+  "GL30": 39767.4,
+  "GL30D": 40.80,
+  "GL30C": 41
+ },
+ {
+  "FECHA": "26/12/2023",
+  "PESO": 843.55,
+  "BLUE": 995,
+  "AL30": 36340.00,
+  "AL30D": 38.62,
+  "AL30C": 39.35,
+  "GL30": 38740.10,
+  "GL30D": 41.28,
+  "GL30C": 41.50
+ },
+ {
+  "FECHA": "27/12/2023",
+  "PESO": 843.51,
+  "BLUE": 1000,
+  "AL30": 35630.00,
+  "AL30D": 38.30,
+  "AL30C": 39.50,
+  "GL30": 38028.48,
+  "GL30D": 40.80,
+  "GL30C": 40.90
+ },
+ {
+  "FECHA": "28/12/2023",
+  "PESO": 844.66,
+  "BLUE": 1000,
+  "AL30": 35800.00,
+  "AL30D": 37.60,
+  "AL30C": 38.20,
+  "GL30": 38009.36,
+  "GL30D": 40.10,
+  "GL30C": 40.75
+ },
+ {
+  "FECHA": "29/12/2023",
+  "PESO": 847.11,
+  "BLUE": 1025,
+  "AL30": 37815.00,
+  "AL30D": 37.85,
+  "AL30C": 37.63,
+  "GL30": 39694.50,
+  "GL30D": 40.10,
+  "GL30C": 41.40
+ },
+ {
+  "FECHA": "02/01/2024",
+  "PESO": 851.14,
+  "BLUE": 1005,
+  "AL30": 38048.00,
+  "AL30D": 38.45,
+  "AL30C": 38.80,
+  "GL30": 39999,
+  "GL30D": 40.30,
+  "GL30C": 41.99
+ },
+  {
+  "FECHA": "03/01/2024",
+  "PESO": 852.59,
+  "BLUE": 1005,
+  "AL30": 39400.00,
+  "AL30D": 38.20,
+  "AL30C": 37.80,
+  "GL30": 41179.32,
+  "GL30D": 40.50,
+  "GL30C": 41.70
+ },
+   {
+  "FECHA": "04/01/2024",
+  "PESO": 853.15,
+  "BLUE": 1020,
+  "AL30": 39590.00,
+  "AL30D": 37.90,
+  "AL30C": 36.90,
+  "GL30": 43261.90,
+  "GL30D": 40.65,
+  "GL30C": 40.10
+ },
+  {
+  "FECHA": "05/01/2024",
+  "PESO": 852.59,
+  "BLUE": 1025,
+  "AL30": 41340.00,
+  "AL30D": 37.69,
+  "AL30C": 36.00,
+  "GL30": 44800.00,
+  "GL30D": 41.55,
+  "GL30C": 39.30
+ }, 
+    {
+  "FECHA": "08/01/2024",
+  "PESO": 857.62,
+  "BLUE": 1050,
+  "AL30": 41780.00,
+  "AL30D": 36.40,
+  "AL30C": 36.00,
+  "GL30": 46022.49,
+  "GL30D": 39.95,
+  "GL30C": 38.70
+ }, 
+   {
+  "FECHA": "09/01/2024",
+  "PESO": 859.00,
+  "BLUE": 1130,
+  "AL30": 40860,
+  "AL30D": 35.5,
+  "AL30C": 35.00,
+  "GL30": 44850.00,
+  "GL30D": 38.65,
+  "GL30C": 38.00
+ }     
 ]
 
 
@@ -8179,7 +8388,7 @@ y_pred = modeloblue.predict(X_test)
 
 # Calcular error
 error = mean_squared_error(y_test, y_pred)
-
+st.subheader('Debe hacer en orden (Blue, CCL, MEP) las predicción para evitar errores en los modelos')
 # Visualizar las predicciones vs. valores reales
 fig, ax = plt.subplots()
 ax.scatter(X_test[:, 0], y_test, color='red', label='Valor real')
@@ -8193,16 +8402,16 @@ st.pyplot(fig)
 # Aplicación Streamlit
 st.subheader('Predicción para tipo de  cambio BLUE')
 #blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()))  # =1Slider para ingresar el valor de BLUE
-ccl = st.slider('CCL', int(dato['CCL'].min()), int(dato['CCL'].max()), key = count)  # Slider para ingresar el valor de CCL
+ccl = st.slider('CCL', float( 500.00), float(dato['CCL'].max()), key = count)  # Slider para ingresar el valor de CCL
 count +=1
-mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()), key = count)  # Slider para ingresar el valor de MEP
+mep = st.slider('MEP', float(500.00), float(dato['MEP'].max()), key = count)  # Slider para ingresar el valor de MEP
 count +=1
 # Realizar la predicción
-entrada_blue = np.array([[ccl, mep]])
+entrada_blue = np.array([[ccl, mep]]) 
 prediccion_blue = modeloblue.predict(entrada_blue)
 
 # Mostrar la predicción
-st.subheader(f'Predicción BLUE : {round(prediccion_blue[0],2)}')
+st.subheader(f'Predicción BLUE : {round(prediccion_blue[0],2)} - (rango mas grado de error {round(prediccion_blue[0]+error,2)} / menos grado de error {round(prediccion_blue[0]-error,2)})')
 
 # Mostrar el error
 st.write(f'Error cuadrático medio en el conjunto de prueba: {round(error,6)}')
@@ -8240,17 +8449,18 @@ st.pyplot(fig1)
 
 # Aplicación Streamlit
 st.subheader('Predicción para tipo de  cambio CCL')
-blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()), key= count)  # Slider para ingresar el valor de BLUE
+#blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()), key= count)  # Slider para ingresar el valor de BLUE 
+blue = st.slider('Blue', float(500.00), float(dato['BLUE'].max()), key= count)  # Slider para ingresar el valor de BLUE
 count +=1
 #ccl = st.slider('CCL', int(dato['CCL'].min()), int(dato['CCL'].max()))  # Slider para ingresar el valor de CCL
-mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()), key=count)  # Slider para ingresar el valor de MEP
+mep = st.slider('MEP', float(500.00), float(dato['MEP'].max()), key=count)  # Slider para ingresar el valor de MEP
 count +=1
 # Realizar la predicción
 entrada_ccl = np.array([[blue, mep]])
 prediccion_ccl = modeloccl.predict(entrada_ccl)
 
 # Mostrar la predicción
-st.subheader(f'Predicción CCL : {round(prediccion_ccl[0],2)}')
+st.subheader(f'Predicción CCL : {round(prediccion_ccl[0],2)} - (rango mas grado de error {round(prediccion_ccl[0]+error,2)} / menos grado de error {round(prediccion_ccl[0]-error,2)})')
 
 # Mostrar el error
 st.write(f'Error cuadrático medio en el conjunto de prueba: {round(error,6)}')
@@ -8288,9 +8498,10 @@ st.pyplot(fig2)
 
 # Aplicación Streamlit
 st.subheader('Predicción para tipo de  cambio MEP')
-blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()), key = count)  # Slider para ingresar el valor de PESO
+#blue = st.slider('Blue', float(dato['BLUE'].min()), float(dato['BLUE'].max()), key = count)  # Slider para ingresar el valor de PESO
+blue = st.slider('Blue', float(500.00), float(dato['BLUE'].max()), key = count)  # Slider para ingresar el valor de PESO
 count +=1
-ccl = st.slider('CCL', int(dato['CCL'].min()), int(dato['CCL'].max()), key=count)  # Slider para ingresar el valor de BLUE
+ccl = st.slider('CCL', float(500.00), float(dato['CCL'].max()), key=count)  # Slider para ingresar el valor de BLUE
 count +=1
 #mep = st.slider('MEP', float(dato['MEP'].min()), float(dato['MEP'].max()))  # Slider para ingresar el valor de GL30D
 
@@ -8299,7 +8510,7 @@ entrada_mep = np.array([[blue, mep]])
 prediccion_mep = modelomep.predict(entrada_mep)
 
 # Mostrar la predicción
-st.subheader(f'Predicción MEP : {round(prediccion_mep[0]),2}')
+st.subheader(f'Predicción MEP : {round(prediccion_mep[0]),2} - (rango mas grado de error {round(prediccion_mep[0]+error,2)} / menos grado de error {round(prediccion_mep[0]-error,2)})')
 
 # Mostrar el error
 st.write(f'Error cuadrático medio en el conjunto de prueba: {round(error,6)}')
