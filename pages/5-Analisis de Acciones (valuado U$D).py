@@ -64,7 +64,7 @@ st.write('---')
 # ---------------------- desarrollo de analisis de caida de acciones
 años = 10
 ruedas = 100  # La cantidad de ruedas para filtrar por volumen operado
-cantidadAcciones = 40 # Las acciones de mayor volumen ultimas ruedas para mostrar 
+cantidadAcciones = 30 # Las acciones de mayor volumen ultimas ruedas para mostrar 
 
 ccl = pd.DataFrame()
 adr = yf.download("YPF", period= str(años)+'Y' , interval='1d')['Adj Close']
