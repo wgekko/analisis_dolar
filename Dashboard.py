@@ -25,21 +25,39 @@ def set_background(png_file):
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
-set_background("images/fondo_muro.jpg")
+set_background("images/fondo3.jpg")
+
+
+#""" imagen de sidebar"""
+def add_local_sidebar_image(image):
+  with open(image, "rb") as image:
+    encoded_string = base64.b64encode(image.read())
+    st.markdown(
+      f"""
+      <style>
+      .stSidebar{{
+        background-image: url(data:files/{"jpg"};base64,{encoded_string.decode()});
+      }}    
+      </style>
+      """,
+      unsafe_allow_html=True
+    )
+
+add_local_sidebar_image("images/fondo1.jpg")
 
 
 st.sidebar.image("images/grafico5.gif", caption="Walter Gomez Financial Consultant")
 
-st.markdown(
-    '''
-    <style>
-    sidebar {
-        background-image: linear-gradiant('images/imge-slide.jpg'));
-    }
-    </style>
-    ''',
-        unsafe_allow_html=True,
-)
+#st.markdown(
+#    '''
+#    <style>
+#    sidebar {
+#        background-image: linear-gradiant('/images/fondo1.jpg'));
+#    }
+#    </style>
+#    ''',
+#        unsafe_allow_html=True,
+#)
 
 # despliegue de imagen lottier
 def load_lottieurl(url):
